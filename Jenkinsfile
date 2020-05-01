@@ -31,10 +31,10 @@ node {
 			println('Hello from a Job DSL script1!')
 			def beginIndex = rmsg.indexOf('{')
 			def endIndex = rmsg.indexOf('}')
-			println('beginIndex' beginIndex)
-			println('endIndex' endIndex)
+			println('beginIndex' + beginIndex)
+			println('endIndex' + endIndex)
 			def jsobSubstring = rmsg.substring(beginIndex)
-			println('jsobSubstring' jsobSubstring)
+			println('jsobSubstring' + jsobSubstring)
 			def jsonSlurper = new JsonSlurperClassic()
 			def robj = jsonSlurper.parseText(jsobSubstring)
 			if (robj.status != 0) { error 'authorization failed: ' + robj.message }
