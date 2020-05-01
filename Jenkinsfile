@@ -16,7 +16,7 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    println ${JWT_KEY_FILE}
+    //println ${JWT_KEY_FILE}
     def toolbelt = tool 'toolbelt'
     
     stage('checkout source') {
@@ -26,7 +26,8 @@ node {
     
     //withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Authorize Dev Hub') {
-		rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${JWT_KEY_FILE}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+		//rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${JWT_KEY_FILE}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+		rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile server.key --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             	//if (rc != 0) { error 'hub org authorization failed' }
             	printf rmsg
 		println('Hello from a Job DSL script1!')
