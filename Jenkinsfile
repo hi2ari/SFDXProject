@@ -23,9 +23,9 @@ node {
         checkout scm
     }
     
-    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
+    //withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Authorize Dev Hub') {
-		rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+		rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${JWT_KEY_FILE}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             	//if (rc != 0) { error 'hub org authorization failed' }
             	printf rmsg
 		println('Hello from a Job DSL script1!')
@@ -40,5 +40,5 @@ node {
 		if (robj.status != 0) { error 'authorization failed: ' + robj.message }
 		robj = null
         }
-    }
+    //}
 }
