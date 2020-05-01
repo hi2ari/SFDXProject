@@ -4,7 +4,7 @@ node {
 
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
-    def SFDC_USERNAME
+	def SFDC_USERNAME="${Workspace}"
 
     def HUB_ORG=env.SF_LOGINID
     def SFDC_HOST = env.SF_URL
@@ -16,6 +16,7 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
+println SFDC_USERNAME
     //println ${JWT_KEY_FILE}
     def toolbelt = tool 'toolbelt'
     
